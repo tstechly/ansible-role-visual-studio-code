@@ -12,13 +12,13 @@ lint: |
   flake8
 
 platforms:
-  - name: ansible-role-visual-studio-code-centos
-    image: centos:7
+  - name: ansible-role-visual-studio-code-ubuntu-min-trusted-yes
+    image: ubuntu:18.04
 
 provisioner:
   name: ansible
   playbooks:
-    converge: ../code-only/converge.yml
+    converge: ./converge.yml
   inventory:
     host_vars:
       instance:
@@ -26,4 +26,4 @@ provisioner:
 
 verifier:
   name: testinfra
-  directory: ../code-only/tests
+  directory: ./tests

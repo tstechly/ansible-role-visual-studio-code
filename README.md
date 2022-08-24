@@ -1,7 +1,7 @@
 Ansible Role: Visual Studio Code
 ================================
 
-[![Build Status](https://travis-ci.com/gantsign/ansible-role-visual-studio-code.svg?branch=master)](https://travis-ci.com/gantsign/ansible-role-visual-studio-code)
+[![Tests](https://github.com/gantsign/ansible-role-visual-studio-code/workflows/Tests/badge.svg)](https://github.com/gantsign/ansible-role-visual-studio-code/actions?query=workflow%3ATests)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gantsign.visual--studio--code-blue.svg)](https://galaxy.ansible.com/gantsign/visual-studio-code)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gantsign/ansible-role-visual-studio-code/master/LICENSE)
 
@@ -10,7 +10,7 @@ Role to install the [Visual Studio Code](https://code.visualstudio.com) IDE / te
 Requirements
 ------------
 
-* Ansible >= 2.8
+* Ansible >= 2.9
 
 * Linux Distribution
 
@@ -18,24 +18,24 @@ Requirements
 
         * Ubuntu
 
-            * Xenial (16.04)
             * Bionic (18.04)
+            * Focal (20.04)
 
     * RedHat Family
 
-        * CentOS
+        * Rocky Linux
 
-            * 7
+            * 8
 
         * Fedora
 
-            * 31
+            * 35
 
     * SUSE Family
 
         * openSUSE
 
-            * 15.1
+            * 15.3
 
     * Note: other versions are likely to work but have not been tested.
 
@@ -57,6 +57,23 @@ visual_studio_code_build: stable
 # installation package. The URL may include directories. The URL must not end
 # with a trailing slash.
 visual_studio_code_mirror: 'https://packages.microsoft.com'
+
+# should the gpgcheck of the repo enabled?
+# if yes
+# - for apt repo the option trusted=yes is NOT added
+# - for dnf/yum the option gpgcheck is set to yes
+# - for zypper the option gpgcheck is set to 1
+# yes is the default
+# if no
+# - for apt repo the option trusted=yes is added to repo definition
+# - for dnf/yum the option gpgcheck is set to no
+# - for zypper the option gpgcheck is set to 0
+visual_studio_code_gpgcheck: yes
+
+# skip task to add repo for remote package manager
+# if set to yes, the task 'install VS Code repo (apt/yum/dnf/zypper)' will be skipped
+# if set to no, the repo will be added, this is the default
+visual_studio_code_skip_add_repo: no
 
 # Users to install extensions for and/or write settings.json
 users: []

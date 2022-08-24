@@ -6,6 +6,7 @@
       - libdrm2
       - libgbm1
       - libxcb-dri3-0
+      - libxshmfence1
       - which
     state: present
 
@@ -23,6 +24,7 @@
     mode: 'u=rw,go='
     owner: root
     group: root
+  when: not visual_studio_code_skip_add_repo
 
 - name: install VS Code (zypper)
   become: yes
